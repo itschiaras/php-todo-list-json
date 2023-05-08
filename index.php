@@ -9,14 +9,35 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <title>ToDo List</title>
 </head>
-<body>
+<body class="bg-primary-subtle">
     <div id="app">
+        <div class="text-center mt-5">
         <h1>{{title}}</h1>
-        <ul>
-            <li v-for="(toDo, index) in toDoList" :key="index">
+        </div>
+        
+       
+
+        <section class="add-toDo mb-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="input-group">
+                            <input @keyup.enter="updateList" type="text" class="form-control" placeholder="Inserisci una cosa da fare" aria-describedby="button-add" v-model="newToDo">
+                            <button class="btn btn-primary" type="button" id="button-add" @click="updateList">Inserisci</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="w-50 mx-auto">
+        <ul class="list-unstyled">
+            <li v-for="(toDo, index) in toDoList" :key="index" class="border border-primary mb-2">
                 {{toDo.text}}
             </li>
         </ul>
+        </div>
+        
     </div>
 
 

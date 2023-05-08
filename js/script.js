@@ -5,7 +5,8 @@ createApp({
         return {
             title: 'ToDo List',
             toDoList: [],
-            apiUrl: 'server.php'
+            apiUrl: 'server.php',
+            newToDo: ''
         }
     },
     methods: {
@@ -14,6 +15,17 @@ createApp({
             axios.get(this.apiUrl).then((res) => {
                 console.log(res.data)
                 this.toDoList = res.data
+            })
+        },
+        updateList() {
+            console.log(this.newToDo)
+            const data = {
+                newToDo: this.newToDo
+            };
+            axios.post(this.apiUrl, data, {headers: {'Content-Type': 'multipart/form-data'}}).then((res) => {
+                this.newToDo = '';
+                console.log(res.data);
+                this.toDoList = res.data;
             })
         }
     },
