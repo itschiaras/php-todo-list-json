@@ -12,6 +12,11 @@
 <body>
     <div id="app">
         <h1>{{title}}</h1>
+        <ul>
+            <li v-for="(toDo, index) in toDoList" :key="index">
+                {{toDo.text}}
+            </li>
+        </ul>
     </div>
 
 
