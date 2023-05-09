@@ -7,9 +7,18 @@ $array = file_get_contents('./data.json'); //stringa
 $phparray = json_decode($array, true);
 
 if(isset($_POST['newToDo'])){
-    $newToDo  = $_POST['newToDo'];
-    array_push($phparray, ['text' => $newToDo]);
+    $newToDo  =  [ 
+        "text" => $_POST['newToDo'],
+        "done" => false
+    ];
+    array_push($phparray, $newToDo);
     file_put_contents('./data.json', json_encode($phparray));
+    
+} elseif (isset($_POST['updateItem']))  {
+    $index = $_POST['updateItem'];
+    $phparray[$index]['done'] = !$phparray[$index]['done'];
+    file_put_contents('./data.json', json_encode($phparray));
+    
 }
 
 // restituisco dati json
